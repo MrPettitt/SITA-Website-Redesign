@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SITA | State Information Technology Agency</title>
+<meta name="description" content="SITA consolidates and drives South Africa's public-sector technology, delivering secure, cost-effective ICT infrastructure, procurement and e-services to government.">
+<meta name="theme-color" content="#0A1628">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --blue: #1A4A8A;
+    --blue-light: #2563EB;
+    --green: #00C48C;
+    --gold: #F5A623;
+    --white: #FFFFFF;
+    --grey: #94A3B8;
+    --border: rgba(255,255,255,0.08);
+    --pad: 60px;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 6px; }
+
+  .icon { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  .skip-link {
+    position: absolute; left: 16px; top: -60px; z-index: 300;
+    background: var(--green); color: var(--navy); font-weight: 700;
+    padding: 10px 18px; border-radius: 10px; text-decoration: none; transition: top .2s;
+  }
+  .skip-link:focus { top: 12px; }
+
+  /* TOPBAR */
+  .topbar {
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid var(--border);
+    padding: 8px var(--pad);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    font-size: 12.5px; color: var(--grey); letter-spacing: 0.02em;
+  }
+  .topbar a { color: var(--grey); text-decoration: none; transition: color .2s; }
+  .topbar a:hover { color: var(--green); }
+  .topbar-left { display: flex; gap: 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
+  .topbar-left::-webkit-scrollbar { display: none; }
+  .topbar-right { display: flex; gap: 20px; align-items: center; white-space: nowrap; }
+  .topbar-right .hotline {
+    background: var(--green); color: var(--navy);
+    padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 11.5px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .topbar-right .hotline:hover { color: var(--navy); background: #00dda0; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 var(--pad);
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--blue-light), var(--green));
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: white; letter-spacing: -1px; flex-shrink: 0;
+  }
+  .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; color: white; line-height: 1.1; }
+  .logo-sub { font-size: 10px; font-weight: 400; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+  .nav-links a {
+    display: block; color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: all .2s; white-space: nowrap;
+  }
+  .nav-links a:hover, .nav-links a.active { color: white; background: rgba(255,255,255,0.08); }
+  .nav-links a.nav-cta {
+    background: var(--green); color: var(--navy); font-weight: 700; padding: 9px 22px; margin-left: 8px;
+  }
+  .nav-links a.nav-cta:hover { background: #00dda0; color: var(--navy); }
+
+  .menu-toggle {
+    display: none; width: 44px; height: 44px; border-radius: 10px; cursor: pointer;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+    align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+  }
+  .menu-toggle span { display: block; width: 20px; height: 2px; background: white; border-radius: 2px; transition: transform .25s, opacity .25s; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* HERO */
+  .hero {
+    min-height: min(90vh, 820px);
+    position: relative; display: flex; align-items: center; overflow: hidden;
+    padding: 80px var(--pad) 120px;
+  }
+  .hero-grid {
+    position: absolute; inset: -60px 0 0 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: grid-drift 20s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes grid-drift { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
+
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; pointer-events: none; }
+  .orb-1 { width: 600px; height: 600px; background: var(--blue-light); top: -150px; right: -100px; animation: float 8s ease-in-out infinite; }
+  .orb-2 { width: 400px; height: 400px; background: var(--green); bottom: -100px; left: 30%; animation: float 10s ease-in-out infinite reverse; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 760px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,196,140,0.12); border: 1px solid rgba(0,196,140,0.3); color: var(--green);
+    padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
+    animation: fade-up 0.8s ease both;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.4); } }
+
+  h1 {
+    font-family: 'Syne', sans-serif; font-size: clamp(32px, 5.2vw, 66px); font-weight: 700;
+    line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 24px;
+    animation: fade-up 0.8s 0.15s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--blue-light), var(--green));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-desc {
+    font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 560px; margin-bottom: 44px;
+    animation: fade-up 0.8s 0.3s ease both; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; animation: fade-up 0.8s 0.45s ease both; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 32px; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: 600;
+    text-decoration: none; transition: all .25s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--green); color: var(--navy); }
+  .btn-primary:hover { background: #00dda0; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,196,140,0.3); }
+  .btn-secondary { background: rgba(255,255,255,0.06); color: white; border: 1px solid rgba(255,255,255,0.18); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  .btn-arrow { transition: transform .2s; }
+  .btn:hover .btn-arrow { transform: translateX(4px); }
+
+  .hero-stats {
+    position: absolute; right: var(--pad); bottom: 80px; display: flex; gap: 40px;
+    animation: fade-up 0.8s 0.6s ease both; z-index: 2;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+  .stat-num sup { font-size: inherit; color: var(--green); vertical-align: baseline; }
+  .stat-label { font-size: 12px; color: var(--grey); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+  @keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* TICKER */
+  .ticker { background: var(--green); padding: 14px 0; overflow: hidden; }
+  .ticker-track { display: flex; animation: ticker-scroll 40s linear infinite; width: max-content; }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 12px; padding: 0 40px;
+    color: var(--navy); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
+  }
+  .ticker-dot { width: 4px; height: 4px; background: rgba(10,22,40,0.45); border-radius: 50%; }
+  @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  section { padding: 100px var(--pad); }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+  h2 { font-family: 'Syne', sans-serif; font-size: clamp(27px, 3.6vw, 46px); font-weight: 700; line-height: 1.12; letter-spacing: -1px; }
+  .section-intro { font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.62); max-width: 540px; margin-top: 16px; font-weight: 300; }
+
+  /* ABOUT */
+  .about { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+  .about-card { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; padding: 36px; position: relative; overflow: hidden; }
+  .about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue-light), var(--green)); }
+  .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .value-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 18px; transition: all .25s; }
+  .value-item:hover { background: rgba(0,196,140,0.07); border-color: rgba(0,196,140,0.25); }
+  .value-icon { font-size: 22px; margin-bottom: 10px; color: var(--green); display: block; }
+  .value-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .value-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+  .about-text h2 { margin-bottom: 20px; }
+  .about-text p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.68); margin-bottom: 16px; font-weight: 300; }
+  .about-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .badge { background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.28); color: #93C5FD; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+
+  /* SERVICES */
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 56px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .service-card {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 36px 30px;
+    transition: all .3s; position: relative; overflow: hidden; text-decoration: none; color: inherit; display: block;
+  }
+  .service-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(0,196,140,0.08)); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .service-card:hover { border-color: rgba(0,196,140,0.3); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+  .service-card:hover::after { opacity: 1; }
+  .service-card.featured { background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(0,196,140,0.1)); border-color: rgba(0,196,140,0.25); }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 12px; background: rgba(255,255,255,0.06); color: var(--green);
+    display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 20px; position: relative; z-index: 1;
+  }
+  .service-card.featured .service-icon { background: rgba(0,196,140,0.15); }
+  .service-title { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; }
+  .service-desc { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.62); position: relative; z-index: 1; font-weight: 300; }
+  .service-link { display: inline-flex; align-items: center; gap: 6px; color: var(--green); font-size: 13px; font-weight: 700; margin-top: 20px; position: relative; z-index: 1; transition: gap .2s; }
+  .service-card:hover .service-link { gap: 10px; }
+
+  /* PROCUREMENT */
+  .procurement { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .proc-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 20px; margin-top: 56px; }
+  .proc-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; transition: all .3s; text-decoration: none; color: inherit; display: block; }
+  .proc-card:hover { border-color: rgba(37,99,235,0.4); transform: translateY(-4px); }
+  .proc-card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .proc-num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: 12px; }
+  .proc-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .proc-card-header .proc-title { margin-bottom: 0; }
+  .proc-desc { font-size: 14.5px; color: rgba(255,255,255,0.62); line-height: 1.6; font-weight: 300; }
+  .proc-tag { display: inline-block; background: rgba(37,99,235,0.14); border: 1px solid rgba(37,99,235,0.28); color: #93C5FD; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* OPPORTUNITIES */
+  .opps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+  .opp-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column; transition: border-color .3s, transform .3s; }
+  .opp-card:hover { border-color: rgba(0,196,140,0.3); transform: translateY(-4px); }
+  .opp-card .service-icon { margin-bottom: 18px; }
+  .opp-card h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .opp-card p { font-size: 14.5px; color: rgba(255,255,255,0.62); line-height: 1.65; font-weight: 300; margin-bottom: 16px; }
+  .opp-list { list-style: none; display: grid; gap: 8px; margin-bottom: 24px; }
+  .opp-list li { font-size: 13.5px; color: rgba(255,255,255,0.78); padding-left: 18px; position: relative; }
+  .opp-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  .opp-card .btn { margin-top: auto; align-self: flex-start; padding: 12px 24px; font-size: 14px; }
+  .note { font-size: 12.5px; color: var(--grey); margin-top: 22px; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    padding: 80px var(--pad); position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--blue) 0%, #0d3366 60%, #0a1e44 100%);
+    border-top: 1px solid rgba(37,99,235,0.3); border-bottom: 1px solid rgba(37,99,235,0.3);
+  }
+  .cta-banner::before {
+    content: 'SITA'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+    font-family: 'Syne', sans-serif; font-size: 260px; font-weight: 800; color: rgba(255,255,255,0.04);
+    line-height: 1; pointer-events: none; user-select: none;
+  }
+  .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+  .cta-inner h2 { max-width: 560px; }
+  .cta-inner p { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.7; max-width: 480px; margin-top: 12px; font-weight: 300; }
+  .cta-actions { display: flex; gap: 14px; flex-shrink: 0; flex-direction: column; align-items: stretch; }
+
+  /* CUTTING EDGE */
+  .ce-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
+  .ce-card {
+    border-radius: 16px; padding: 44px 40px; position: relative; overflow: hidden; min-height: 260px;
+    display: flex; flex-direction: column; justify-content: flex-end; text-decoration: none; color: inherit; transition: transform .3s;
+  }
+  .ce-card:hover { transform: scale(1.015); }
+  .ce-card-1 { background: linear-gradient(135deg, #0d3a6e, #1a5aa0); }
+  .ce-card-2 { background: linear-gradient(135deg, #004d35, #00835a); }
+  .ce-card-3 { background: linear-gradient(135deg, #2d1b69, #4c35b0); }
+  .ce-card-4 { background: linear-gradient(135deg, #7a1c1c, #b83030); }
+  .ce-card::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 60%); }
+  .ce-label { position: relative; z-index: 1; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .ce-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; position: relative; z-index: 1; margin-bottom: 10px; line-height: 1.1; }
+  .ce-desc { font-size: 14.5px; color: rgba(255,255,255,0.78); position: relative; z-index: 1; font-weight: 300; line-height: 1.6; }
+  .ce-icon { position: absolute; top: 30px; right: 30px; font-size: 56px; opacity: 0.2; }
+
+  /* CONTACT */
+  .contact { background: var(--navy-mid); border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 56px; align-items: start; }
+  .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-icon { width: 40px; height: 40px; background: rgba(0,196,140,0.1); border: 1px solid rgba(0,196,140,0.22); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: var(--green); flex-shrink: 0; }
+  .contact-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin-bottom: 4px; }
+  .contact-value { font-size: 16px; font-weight: 500; }
+  .contact-value a { text-decoration: none; transition: color .2s; }
+  .contact-value a:hover { color: var(--green); }
+
+  .contact-form { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
+  .contact-form h3 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 28px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin-bottom: 8px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 16px; color: white; font-family: inherit; font-size: 15px; transition: border-color .2s, box-shadow .2s; outline: none;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,196,140,0.18); }
+  .form-group select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.500l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+  .form-group select option { background: #1a2d4a; }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group.invalid input, .form-group.invalid textarea { border-color: #FF6B7A; }
+  .error-msg { display: none; font-size: 12.5px; color: #FF8C98; margin-top: 6px; }
+  .form-group.invalid .error-msg { display: block; }
+  .form-status { display: none; margin-top: 18px; padding: 14px 18px; border-radius: 10px; font-size: 14px; }
+  .form-status.ok { display: block; background: rgba(0,196,140,0.1); border: 1px solid rgba(0,196,140,0.3); color: var(--green); }
+
+  /* FAQ */
+  .faq-list { max-width: 860px; margin-top: 48px; display: grid; gap: 12px; }
+  .faq-list details { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; transition: border-color .25s; }
+  .faq-list details[open] { border-color: rgba(0,196,140,0.3); }
+  .faq-list summary {
+    list-style: none; cursor: pointer; padding: 20px 24px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: '+'; font-size: 24px; color: var(--green); font-weight: 500; transition: transform .25s; line-height: 1; }
+  .faq-list details[open] summary::after { transform: rotate(45deg); }
+  .faq-list details p { padding: 0 24px 22px; font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.68); font-weight: 300; }
+  .faq-list details p a { color: var(--green); }
+
+  /* FOOTER */
+  footer { background: #060e1a; border-top: 1px solid var(--border); padding: 64px var(--pad) 32px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 56px; }
+  .footer-brand p { font-size: 14px; color: var(--grey); line-height: 1.7; margin: 16px 0 24px; font-weight: 300; max-width: 290px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--grey); text-decoration: none; transition: all .2s; }
+  .social-btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .social-btn:hover { background: rgba(0,196,140,0.1); border-color: rgba(0,196,140,0.35); color: white; }
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; color: rgba(255,255,255,0.92); }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: var(--grey); font-size: 14px; text-decoration: none; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--green); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--grey); }
+  .footer-bottom-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-bottom-links a { color: var(--grey); text-decoration: none; transition: color .2s; }
+  .footer-bottom-links a:hover { color: white; }
+  .za-flag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 12px; color: rgba(255,255,255,0.6); margin-left: 8px; }
+  .flag-stripe { display: flex; gap: 1px; width: 20px; height: 13px; border-radius: 2px; overflow: hidden; }
+  .flag-stripe span { flex: 1; }
+
+  .to-top {
+    position: fixed; right: 24px; bottom: 24px; z-index: 90; width: 46px; height: 46px; border-radius: 12px;
+    background: var(--green); color: var(--navy); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 28px rgba(0,196,140,0.4); font-size: 22px;
+    opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s, transform .25s;
+  }
+  .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+  .to-top .icon { stroke-width: 2.4; }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s, transform .7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1180px) {
+    .hero-stats { position: relative; right: auto; bottom: auto; margin-top: 56px; }
+    .hero { flex-direction: column; align-items: flex-start; justify-content: center; padding-bottom: 80px; }
+  }
+  @media (max-width: 1040px) {
+    :root { --pad: 32px; }
+    .menu-toggle { display: flex; }
+    .nav-links {
+      position: fixed; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
+      background: rgba(10,22,40,0.98); border-bottom: 1px solid var(--border); padding: 12px var(--pad) 24px;
+      transform: translateY(-120%); opacity: 0; visibility: hidden; transition: transform .3s, opacity .3s, visibility .3s;
+      max-height: calc(100vh - 72px); overflow-y: auto;
+    }
+    .nav-links.open { transform: none; opacity: 1; visibility: visible; }
+    .nav-links a { padding: 14px 4px; font-size: 16px; border-radius: 0; border-bottom: 1px solid var(--border); }
+    .nav-links a:hover, .nav-links a.active { background: transparent; color: var(--green); }
+    .nav-links li:last-child a.nav-cta { border: none; margin: 16px 0 0; padding: 14px; text-align: center; border-radius: 10px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid, .proc-grid, .opps-grid { grid-template-columns: 1fr 1fr; }
+    .cta-inner { flex-direction: column; align-items: flex-start; }
+    .cta-actions { flex-direction: row; flex-wrap: wrap; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+  @media (max-width: 720px) {
+    :root { --pad: 20px; }
+    section { padding: 72px var(--pad); }
+    .topbar { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .topbar-left { max-width: 100%; }
+    .services-grid, .proc-grid, .opps-grid, .ce-grid, .footer-grid, .form-row { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .stat-num { font-size: 34px; }
+    .contact-form { padding: 26px; }
+    .about-card { padding: 26px; }
+    .ce-card { padding: 32px 26px; min-height: 220px; }
+    .hero-actions .btn, .cta-actions .btn { flex: 1 1 100%; }
+    .services-header .btn { width: 100%; }
+    .logo-sub { font-size: 8.5px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.200 3 14.800 0 18M12 3c-3 3.200-3 14.800 0 18"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 010-8 5.500 5.500 0 0110.700-1.200A4.600 4.600 0 0117 18H7z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 118 0v3"/></symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 20h20"/></symbol>
+    <symbol id="i-cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/></symbol>
+    <symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9.500 10v8M14.500 10v8M19 10v8M3 20h18"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.400 11.200a1 1 0 001 .8h8.900a1 1 0 001-.8L20 8H6"/><circle cx="9" cy="20" r="1.300"/><circle cx="17" cy="20" r="1.300"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 15c-1.500 1.500-2 5-2 5s3.500-.5 5-2M14 4c3-1 6-1 6-1s0 3-1 6l-6 6-5-5 6-6zM9 11l-4 1 2-3 3-1M13 15l-1 4 3-2 1-3"/><circle cx="15.500" cy="8.500" r="1.200"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.200"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.500 10.900c.6.500 1 1.200 1 2.100h5c0-.9.400-1.600 1-2.100A6 6 0 0012 3z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.500-3.200 8-8 9-4.800-1-8-4.500-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.500"/><path d="M2 20c0-3.500 3-6 7-6s7 2.500 7 6M17 5a3.500 3.500 0 010 7M22 20c0-2.800-1.800-4.800-4.500-5.600"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.300-8-11a4.500 4.500 0 018-2.800A4.500 4.500 0 0120 10c0 5.700-8 11-8 11z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.200 7-11a7 7 0 10-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.500V16c0 1.500 2.700 3 6 3s6-1.500 6-3v-4.500M22 9v6"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.500 14L7 22l5-3 5 3-1.500-8"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  </defs>
+</svg>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="#opportunities">Careers</a>
+    <a href="#opportunities">Internships</a>
+    <a href="#opportunities">Bursaries</a>
+    <a href="#procurement">Tenders</a>
+    <a href="#procurement">RFQs</a>
+    <a href="#faqs">FAQs</a>
+  </div>
+  <div class="topbar-right">
+    <a href="mailto:contact.centre@sita.co.za">contact.centre@sita.co.za</a>
+    <a href="tel:0800748222" class="hotline"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> 0800 SITA Cares</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav aria-label="Main">
+  <a href="#top" class="logo" aria-label="SITA home">
+    <div class="logo-mark">SI</div>
+    <div>
+      <div class="logo-text">SITA</div>
+      <div class="logo-sub">State IT Agency · Est. 1999</div>
+    </div>
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#procurement">Procurement</a></li>
+    <li><a href="#cutting-edge">Innovation</a></li>
+    <li><a href="#govtech">GovTech</a></li>
+    <li><a href="#faqs">FAQs</a></li>
+    <li><a href="#contact" class="nav-cta btn">Contact Us <span class="btn-arrow" aria-hidden="true">→</span></a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">South Africa's Government ICT Partner</div>
+    <h1>Powering<br><em>Digital Government</em><br>for All Citizens</h1>
+    <p class="hero-desc">
+      SITA consolidates and drives South Africa's public-sector technology, delivering secure, cost-effective ICT infrastructure, procurement, and e-services to every department and every citizen.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">Explore Services <span class="btn-arrow" aria-hidden="true">→</span></a>
+      <a href="#about" class="btn btn-secondary">Our Mandate</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num"><span class="count" data-target="25">25</span><sup>+</sup></div>
+      <div class="stat-label">Years of Service</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num"><span class="count" data-target="160">160</span><sup>+</sup></div>
+      <div class="stat-label">Gov Departments</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num"><span class="count" data-target="9">9</span></div>
+      <div class="stat-label">Provincial Offices</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span>Network Services</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Cloud Computing</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>e-Government Solutions</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Cybersecurity</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Transversal Contracts</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Application Development</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>GovTech 2025</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>End User Computing</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Business Process Outsourcing</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Hosting &amp; Data Centres</span><span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">Who We Are</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <h2>The ICT Engine Behind South African Government</h2>
+      <p>Established in 1999, SITA consolidates and coordinates the State's information technology resources, delivering scale, capability and interoperability across all spheres of government.</p>
+      <p>As the IT business partner to the largest employer and consumer of IT products in South Africa, SITA ensures every department gets value for money while keeping citizen services secure and accessible.</p>
+      <div class="about-badges">
+        <span class="badge">Mandatory ICT Services</span>
+        <span class="badge">National Footprint</span>
+        <span class="badge">DPSA Aligned</span>
+        <span class="badge">MIOS &amp; MISS Compliant</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="about-card">
+        <div class="section-label" style="margin-bottom:20px;">Our Core Values</div>
+        <div class="values-grid">
+          <div class="value-item">
+            <svg class="icon value-icon" aria-hidden="true"><use href="#i-target"/></svg>
+            <div class="value-name">Customer-Centricity</div>
+            <div class="value-desc">Exceed expectations with best-fit services</div>
+          </div>
+          <div class="value-item">
+            <svg class="icon value-icon" aria-hidden="true"><use href="#i-bulb"/></svg>
+            <div class="value-name">Innovation</div>
+            <div class="value-desc">Thought leadership in ICT for public service</div>
+          </div>
+          <div class="value-item">
+            <svg class="icon value-icon" aria-hidden="true"><use href="#i-shield"/></svg>
+            <div class="value-name">Integrity</div>
+            <div class="value-desc">Honesty, respect and accountability always</div>
+          </div>
+          <div class="value-item">
+            <svg class="icon value-icon" aria-hidden="true"><use href="#i-bolt"/></svg>
+            <div class="value-name">Agility</div>
+            <div class="value-desc">Adaptive and responsive to change</div>
+          </div>
+          <div class="value-item">
+            <svg class="icon value-icon" aria-hidden="true"><use href="#i-users"/></svg>
+            <div class="value-name">Collaboration</div>
+            <div class="value-desc">Shared goals, greater productivity</div>
+          </div>
+          <div class="value-item">
+            <svg class="icon value-icon" aria-hidden="true"><use href="#i-heart"/></svg>
+            <div class="value-name">Empathy</div>
+            <div class="value-desc">Understanding different perspectives</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <div class="section-label">What We Deliver</div>
+      <h2>End-to-End ICT Services<br>for Government</h2>
+    </div>
+    <a href="#contact" class="btn btn-secondary" data-enquiry="Service Request">Request a Service <span class="btn-arrow" aria-hidden="true">→</span></a>
+  </div>
+  <div class="services-grid">
+    <a href="#contact" class="service-card featured reveal" data-enquiry="Service Request" data-note="Network Services">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+      <div class="service-title">Network Services</div>
+      <div class="service-desc">Nationwide secure connectivity infrastructure linking all government departments across South Africa's nine provinces.</div>
+      <div class="service-link">Learn more <span aria-hidden="true">→</span></div>
+    </a>
+    <a href="#contact" class="service-card reveal" data-enquiry="Service Request" data-note="Hosting &amp; Cloud">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg></div>
+      <div class="service-title">Hosting &amp; Cloud</div>
+      <div class="service-desc">Secure government data centres and cloud-ready hosting platforms with 99.9% uptime SLAs for critical workloads.</div>
+      <div class="service-link">Learn more <span aria-hidden="true">→</span></div>
+    </a>
+    <a href="#contact" class="service-card reveal" data-enquiry="Service Request" data-note="Cybersecurity">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></div>
+      <div class="service-title">Cybersecurity</div>
+      <div class="service-desc">Comprehensive MISS-aligned security services protecting government information assets and citizen data at all times.</div>
+      <div class="service-link">Learn more <span aria-hidden="true">→</span></div>
+    </a>
+    <a href="#contact" class="service-card reveal" data-enquiry="Service Request" data-note="End User Computing">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></div>
+      <div class="service-title">End User Computing</div>
+      <div class="service-desc">Device provisioning, management and support for thousands of government employees across all departments.</div>
+      <div class="service-link">Learn more <span aria-hidden="true">→</span></div>
+    </a>
+    <a href="#contact" class="service-card reveal" data-enquiry="Service Request" data-note="Application Development">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-cog"/></svg></div>
+      <div class="service-title">Application Development</div>
+      <div class="service-desc">Custom-built e-government applications that bring public services closer to every South African citizen.</div>
+      <div class="service-link">Learn more <span aria-hidden="true">→</span></div>
+    </a>
+    <a href="#contact" class="service-card reveal" data-enquiry="Service Request" data-note="Business Process Outsourcing">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-printer"/></svg></div>
+      <div class="service-title">Business Process Outsourcing</div>
+      <div class="service-desc">Streamlined BPO and printing services reducing operational overhead for departments at scale.</div>
+      <div class="service-link">Learn more <span aria-hidden="true">→</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- PROCUREMENT -->
+<section class="procurement" id="procurement">
+  <div class="reveal">
+    <div class="section-label">Procurement Hub</div>
+    <h2>Transversal Contracts &amp;<br>Procurement Services</h2>
+    <p class="section-intro">SITA manages government-wide ICT procurement, ensuring compliance, value for money, and fair supplier access.</p>
+  </div>
+  <div class="proc-grid">
+    <a href="#contact" class="proc-card reveal" data-enquiry="Procurement" data-note="Tenders and invitations to bid">
+      <div class="proc-num">01</div>
+      <div class="proc-card-header">
+        <div class="proc-title">Tenders &amp; Invitations</div>
+        <span class="proc-tag">Open</span>
+      </div>
+      <div class="proc-desc">Browse current bid invitations, view tender bulletins and track the status of active procurement processes. Compliant and transparent.</div>
+    </a>
+    <a href="#contact" class="proc-card reveal" data-enquiry="Procurement" data-note="RFQ bulletin">
+      <div class="proc-num">02</div>
+      <div class="proc-title">RFQ Bulletin</div>
+      <div class="proc-desc">Access new Request for Quotation invitations, consolidated lists and the e-procurement self-service portal for registered suppliers.</div>
+    </a>
+    <a href="#contact" class="proc-card reveal" data-enquiry="Procurement" data-note="Transversal contracts">
+      <div class="proc-num">03</div>
+      <div class="proc-title">Transversal Contracts</div>
+      <div class="proc-desc">Leverage SITA's pre-negotiated software, hardware and services contracts, available to all qualifying government entities.</div>
+    </a>
+  </div>
+</section>
+
+<!-- OPPORTUNITIES -->
+<section id="opportunities">
+  <div class="reveal">
+    <div class="section-label">Join SITA</div>
+    <h2>Careers, Internships<br>&amp; Bursaries</h2>
+    <p class="section-intro">Build a career in public-sector technology or start one through our youth programmes.</p>
+  </div>
+  <div class="opps-grid">
+    <article class="opp-card reveal">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></div>
+      <h3>Careers</h3>
+      <p>Join thousands of ICT professionals shaping how South Africans access government services.</p>
+      <ul class="opp-list"><li>Cloud and infrastructure</li><li>Cybersecurity and risk</li><li>Software and data engineering</li></ul>
+      <a href="#contact" class="btn btn-secondary" data-enquiry="Careers">Enquire about careers</a>
+    </article>
+    <article class="opp-card reveal">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg></div>
+      <h3>Internships</h3>
+      <p>Structured work-integrated learning that gives graduates real experience in public-sector ICT.</p>
+      <ul class="opp-list"><li>Graduate and student placements</li><li>Mentorship from senior engineers</li><li>Exposure to national programmes</li></ul>
+      <a href="#contact" class="btn btn-secondary" data-enquiry="Internships &amp; Bursaries">Enquire about internships</a>
+    </article>
+    <article class="opp-card reveal">
+      <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg></div>
+      <h3>Bursaries</h3>
+      <p>Funding for talented students pursuing qualifications in information and communications technology.</p>
+      <ul class="opp-list"><li>Undergraduate ICT studies</li><li>Merit and need based support</li><li>Pathway into SITA after graduation</li></ul>
+      <a href="#contact" class="btn btn-secondary" data-enquiry="Internships &amp; Bursaries">Enquire about bursaries</a>
+    </article>
+  </div>
+  <p class="note">Programme summaries are illustrative for this redesign. Confirm current openings with the SITA contact centre.</p>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-inner">
+    <div>
+      <div class="section-label">Self-Service Portal</div>
+      <h2>Manage Your Service<br>Requests Online</h2>
+      <p>Access SITA's IT Service Management portal to log, track, and resolve incidents, 24/7, from anywhere.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="https://www.sita.co.za/" target="_blank" rel="noopener" class="btn btn-primary">Open ITSM Portal <span class="btn-arrow" aria-hidden="true">→</span></a>
+      <a href="#contact" class="btn btn-secondary" data-enquiry="Procurement" data-note="Supplier registration">Register as Supplier</a>
+    </div>
+  </div>
+</div>
+
+<!-- CUTTING EDGE FOCUS -->
+<section class="cutting-edge" id="cutting-edge">
+  <div class="reveal">
+    <div class="section-label">Innovation Focus</div>
+    <h2>Cutting Edge ICT<br>for Government</h2>
+  </div>
+  <div class="ce-grid">
+    <a href="#contact" class="ce-card ce-card-1 reveal" data-enquiry="General Enquiry" data-note="e-Government services">
+      <svg class="icon ce-icon" aria-hidden="true"><use href="#i-building"/></svg>
+      <div class="ce-label">Digital Transformation</div>
+      <div class="ce-title">e-Government Services</div>
+      <div class="ce-desc">Bringing public services online, so citizens access government without queues or paperwork.</div>
+    </a>
+    <a href="#contact" class="ce-card ce-card-2 reveal" data-enquiry="General Enquiry" data-note="Cloud computing strategy">
+      <svg class="icon ce-icon" aria-hidden="true"><use href="#i-cloud"/></svg>
+      <div class="ce-label">Infrastructure</div>
+      <div class="ce-title">Cloud Computing Strategy</div>
+      <div class="ce-desc">A cloud-first roadmap delivering agility, resilience, and cost efficiency for all government workloads.</div>
+    </a>
+    <a href="#contact" class="ce-card ce-card-3 reveal" data-enquiry="General Enquiry" data-note="G-Commerce platform">
+      <svg class="icon ce-icon" aria-hidden="true"><use href="#i-cart"/></svg>
+      <div class="ce-label">e-Commerce for Government</div>
+      <div class="ce-title">G-Commerce Platform</div>
+      <div class="ce-desc">Digital marketplace enabling seamless government-to-citizen and government-to-business transactions.</div>
+    </a>
+    <a href="#contact" class="ce-card ce-card-4 reveal" id="govtech" data-enquiry="General Enquiry" data-note="GovTech Conference">
+      <svg class="icon ce-icon" aria-hidden="true"><use href="#i-rocket"/></svg>
+      <div class="ce-label">Annual Summit</div>
+      <div class="ce-title">GovTech Conference</div>
+      <div class="ce-desc">SA's premier platform where public and private sectors collaborate on ICT-driven service delivery solutions.</div>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faqs" style="background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="reveal">
+    <div class="section-label">Help Centre</div>
+    <h2>Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-list reveal">
+    <details open>
+      <summary>Who can use SITA's services?</summary>
+      <p>SITA serves national and provincial government departments and other public-sector entities. Some services are mandatory for departments, while others are optional and available on request.</p>
+    </details>
+    <details>
+      <summary>How do I log a service request?</summary>
+      <p>Use the IT Service Management portal, call the toll-free helpline on <a href="tel:0800748222">0800 748 222</a>, or send us a message with the form below and choose "Service Request".</p>
+    </details>
+    <details>
+      <summary>How can my company become a SITA supplier?</summary>
+      <p>Review the tender and RFQ bulletins in the <a href="#procurement">Procurement Hub</a>, then register as a supplier through the e-procurement portal. Use the contact form with the "Procurement" enquiry type if you need help.</p>
+    </details>
+    <details>
+      <summary>When is the contact centre open?</summary>
+      <p>The head office contact centre operates Monday to Friday, 08:00 to 16:30. You can email <a href="mailto:contact.centre@sita.co.za">contact.centre@sita.co.za</a> at any time.</p>
+    </details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="section-label">Get in Touch</div>
+    <h2>We're Here to Help</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>SITA Head Office</h3>
+      <div class="contact-item">
+        <div class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></div>
+        <div>
+          <div class="contact-label">Toll-Free Helpline</div>
+          <div class="contact-value"><a href="tel:0800748222">0800 SITA Cares / 0800 748 222</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:contact.centre@sita.co.za">contact.centre@sita.co.za</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></div>
+        <div>
+          <div class="contact-label">Head Office</div>
+          <div class="contact-value"><a href="https://www.google.com/maps/search/?api=1&amp;query=459+Tsitsa+Street+Erasmuskloof+Pretoria" target="_blank" rel="noopener">459 Tsitsa Street, Erasmuskloof, Pretoria</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></div>
+        <div>
+          <div class="contact-label">Operating Hours</div>
+          <div class="contact-value">Monday to Friday, 08:00 to 16:30</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm" novalidate>
+      <h3>Send Us a Message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first">First Name</label>
+          <input id="first" name="first" type="text" placeholder="e.g. Thabo" autocomplete="given-name" required>
+          <span class="error-msg">Please enter your first name.</span>
+        </div>
+        <div class="form-group">
+          <label for="last">Last Name</label>
+          <input id="last" name="last" type="text" placeholder="e.g. Mokoena" autocomplete="family-name" required>
+          <span class="error-msg">Please enter your last name.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="your@email.gov.za" autocomplete="email" required>
+        <span class="error-msg">Please enter a valid email address.</span>
+      </div>
+      <div class="form-group">
+        <label for="org">Department / Organisation</label>
+        <input id="org" name="org" type="text" placeholder="e.g. Department of Home Affairs" autocomplete="organization">
+      </div>
+      <div class="form-group">
+        <label for="enquiry">Enquiry Type</label>
+        <select id="enquiry" name="enquiry">
+          <option>General Enquiry</option>
+          <option>Service Request</option>
+          <option>Procurement</option>
+          <option>Technical Support</option>
+          <option>Careers</option>
+          <option>Internships &amp; Bursaries</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Describe your enquiry..." required></textarea>
+        <span class="error-msg">Please tell us how we can help (at least 10 characters).</span>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Send Message <span class="btn-arrow" aria-hidden="true">→</span></button>
+      <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#top" class="logo" aria-label="SITA home">
+        <div class="logo-mark">SI</div>
+        <div>
+          <div class="logo-text">SITA</div>
+          <div class="logo-sub">State Information Technology Agency</div>
+        </div>
+      </a>
+      <p>Established 1999. Empowering South Africa's government through secure, cost-effective, and integrated ICT services.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/" target="_blank" rel="noopener" class="social-btn" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.200 2H21l-6.500 7.400L22 22h-6l-4.700-6.100L5.800 22H3l7-8L2 2h6.100l4.200 5.600L18.200 2zm-1 18h1.600L7 3.900H5.300L17.200 20z"/></svg></a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.980 3.500a2.500 2.500 0 11-.01 5 2.500 2.500 0 01.01-5zM3 9.500h4V21H3V9.500zm7 0h3.800v1.600h.1c.5-1 1.800-2 3.800-2 4 0 4.800 2.600 4.800 6V21h-4v-5c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700V21h-4V9.500z"/></svg></a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6.500c0-.7.300-1 1.100-1H17V2h-2.800C11.200 2 10 3.800 10 6.200V8H7.500v3.500H10V22h4V11.500h2.700L17 8h-3z"/></svg></a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.600 7.200a2.500 2.500 0 00-1.800-1.800C18.200 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 002.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 001.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 001.800-1.800C22 15.200 22 12 22 12s0-3.200-.4-4.800zM10 15V9l5.200 3-5.200 3z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#about">Vision &amp; Mission</a></li>
+        <li><a href="#about">Core Values</a></li>
+        <li><a href="https://www.sita.co.za/" target="_blank" rel="noopener">Board of Directors</a></li>
+        <li><a href="https://www.sita.co.za/" target="_blank" rel="noopener">Annual Reports</a></li>
+        <li><a href="https://www.sita.co.za/" target="_blank" rel="noopener">Corporate Governance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Network</a></li>
+        <li><a href="#services">Hosting</a></li>
+        <li><a href="#services">Cybersecurity</a></li>
+        <li><a href="#services">Application Dev</a></li>
+        <li><a href="#services">End User Computing</a></li>
+        <li><a href="#faqs">Service Management</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#opportunities">Careers</a></li>
+        <li><a href="#opportunities">Internships</a></li>
+        <li><a href="#opportunities">Bursaries</a></li>
+        <li><a href="#procurement">Tenders</a></li>
+        <li><a href="#contact">Whistle Blowing</a></li>
+        <li><a href="#govtech">GovTech</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© <span id="year">2025</span> SITA SOC Ltd. All rights reserved.
+      <span class="za-flag">
+        <span class="flag-stripe" aria-hidden="true"><span style="background:#007A4D"></span><span style="background:#FFB612"></span><span style="background:#DE3831"></span><span style="background:#002395"></span></span>
+        South Africa
+      </span>
+    </div>
+    <div class="footer-bottom-links">
+      <a href="https://www.sita.co.za/" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://www.sita.co.za/" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      <a href="https://www.sita.co.za/" target="_blank" rel="noopener">PAIA Manual</a>
+      <a href="https://www.sita.co.za/" target="_blank" rel="noopener">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></button>
+
+<script>
+  (function () {
+    var nav = document.querySelector('nav');
+    var toggle = document.getElementById('menuToggle');
+    var links = document.getElementById('navLinks');
+    var toTop = document.getElementById('toTop');
+
+    // Seamless ticker loop
+    var track = document.getElementById('tickerTrack');
+    track.innerHTML += track.innerHTML;
+
+    // Mobile menu
+    function setMenu(open) {
+      links.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', function () { setMenu(!links.classList.contains('open')); });
+    links.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1040) setMenu(false); });
+
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e, i) {
+          if (e.isIntersecting) {
+            setTimeout(function () { e.target.classList.add('visible'); }, i * 80);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(function (el) { obs.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // Animated counters
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      document.querySelectorAll('.count').forEach(function (el) {
+        var target = +el.dataset.target;
+        el.textContent = '0';
+        setTimeout(function () {
+          var start = Date.now();
+          var timer = setInterval(function () {
+            var p = Math.min((Date.now() - start) / 1400, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p >= 1) clearInterval(timer);
+          }, 30);
+        }, 700);
+      });
+    }
+
+    // Active nav link and back to top
+    var ids = ['about', 'services', 'procurement', 'cutting-edge', 'faqs', 'contact'];
+    var sections = ids.map(function (id) { return document.getElementById(id); });
+    function onScroll() {
+      var y = window.scrollY;
+      toTop.classList.toggle('show', y > 700);
+      var current = '';
+      sections.forEach(function (s) { if (s.getBoundingClientRect().top <= 140) current = s.id; });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current && !a.classList.contains('nav-cta'));
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // Pre-fill the enquiry type and message from cards and buttons
+    var form = document.getElementById('contactForm');
+    var enquiry = document.getElementById('enquiry');
+    var message = document.getElementById('message');
+    document.querySelectorAll('[data-enquiry]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        Array.prototype.forEach.call(enquiry.options, function (o) {
+          if (o.text === el.dataset.enquiry) enquiry.value = o.value;
+        });
+        if (el.dataset.note && !message.value.trim()) {
+          message.value = 'I would like to know more about: ' + el.dataset.note + '.';
+        }
+      });
+    });
+
+    // Form validation
+    var status = document.getElementById('formStatus');
+    function check(field, ok) { field.closest('.form-group').classList.toggle('invalid', !ok); return ok; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var ok1 = check(f.first, f.first.value.trim().length > 0);
+      var ok2 = check(f.last, f.last.value.trim().length > 0);
+      var ok3 = check(f.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim()));
+      var ok4 = check(f.message, f.message.value.trim().length >= 10);
+      status.className = 'form-status';
+      if (ok1 && ok2 && ok3 && ok4) {
+        status.textContent = 'Thank you, ' + f.first.value.trim() + '. Your message has been received (demo form, nothing was sent).';
+        status.className = 'form-status ok';
+        form.reset();
+      } else {
+        form.querySelector('.invalid input, .invalid textarea').focus();
+      }
+    });
+    form.addEventListener('input', function (e) {
+      var g = e.target.closest('.form-group');
+      if (g) g.classList.remove('invalid');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
